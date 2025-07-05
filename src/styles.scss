@@ -1,0 +1,73 @@
+@use './styles/variables' as *;
+@import "primeicons/primeicons.css";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+section {
+    padding: 50px 0;
+}
+
+.container {
+    width: 95%;
+    margin: auto;
+}
+
+.padding {
+    padding: 4px 10px;
+}
+
+.padding-lg {
+    padding: 50px 0;
+}
+
+
+img {
+    width: 100%;
+    overflow: hidden;
+}
+
+ul {
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+h1, h2, h3 {
+    color: $text-color;
+}
+
+.d-flex{
+    display: flex;
+}
+.justify-center {
+    justify-content: center;
+}
+.justify-between {
+    justify-content: space-between;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.gap-sm {
+    gap: 10px;
+}
+
+.gap {
+    gap: 20px;
+}
+.background {
+    background-color: red;
+}
+

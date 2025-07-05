@@ -1,0 +1,29 @@
+@use '../../../styles/variables' as *;
+
+.search {
+
+    background-color: #F3F1F1;
+    padding: 40px 30px;
+
+    .search-container{
+
+         .p-button 
+    {
+        button {
+        //      background:gold;
+        // border: gold;
+        --p-button-primary-color: gold;
+
+        }
+
+    }
+   
+        // --p-button-primary-background: gold
+       
+
+    }
+}
+
+// color: var(--p-button-primary-color);
+//      var(--p-button-primary-background);
+//     border: 1px solid var(--p-button-primary-border-color);

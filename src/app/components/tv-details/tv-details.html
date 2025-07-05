@@ -1,0 +1,48 @@
+<section class="movieDetails">
+    <div class="container">
+
+
+        <div class="flex justify-between gap-1">
+            @if (tvshow()) {
+
+            <div class="img-container rounded-lg">
+
+                <img [src]="'https://image.tmdb.org/t/p/w500' + tvshow()!.poster_path" [alt]="tvshow()!.name"
+                    class="rounded-3xl">
+
+            </div>
+
+            <div class="movie-details w-3/5">
+
+                <h2 class="!mb-4 text-3xl font-bold">{{ tvshow()!.name }}</h2>
+                <p class="!mb-4 rel-date">{{ tvshow()!.first_air_date}} <i class="pi pi-calendar" style="font-size: 1rem"></i></p>
+
+                <!-- Display rating stars -->
+                <div class="flex align-items-center gap-2 myRating">
+                    <p-rating [ngModel]="tvshow()!.vote_average / 2" [readonly]="true" [stars]="5"></p-rating>
+                     <!-- Display original score -->
+                    <span>({{ tvshow()!.vote_average | number:'1.1-1' }}/10)</span>
+                </div>
+
+
+                <p class="!my-4">{{ tvshow()!.overview }}</p>
+                
+                <div class="genres-container flex flex-wrap gap-2">
+                    @for (genreName of genres(); track genreName) {
+                        <p-tag [value]="genreName"  class="!mt-4 !rounded-full genre" ></p-tag>
+                    } @empty {
+                        <p>No genres available.</p>
+                    }
+                </div>
+
+            </div>
+
+            }@else {
+            <p>Loading movie details or movie not found...</p>
+            }
+        </div>
+
+        <app-recommendation></app-recommendation>
+        <app-movie-reviw></app-movie-reviw>
+    </div>
+</section>

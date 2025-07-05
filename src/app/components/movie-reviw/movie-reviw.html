@@ -1,0 +1,32 @@
+
+
+<!-- movie-reviw.html -->
+<section class="reviews-section mt-5">
+
+  <h2 class="!mb-3 font-bold text-3xl">Reviews</h2>
+
+  @if (movieReviws().length > 0) {
+    @for (review of movieReviws(); track review.id) {
+      <div class="review-card !mb-4 !p-4 border rounded-lg shadow-sm">
+        <div class="flex items-center !mb-2">
+
+          <p class="font-semibold text-lg author">{{ review.author_details?.username || review.author }}</p>
+
+          @if (review.author_details?.rating) {
+            <div class="flex align-items-center gap-2 myRating">
+
+                    <p-rating [ngModel]="review.author_details.rating / 2" [readonly]="true" [stars]="5" class="myRating"></p-rating>
+                    
+            </div>
+          }
+        </div>
+        <p class="text-gray-700 !mb-3">{{ review.content }}</p>
+        <p class="text-sm text-gray-500">Reviewed on: {{ review.created_at | date:'mediumDate' }}</p>
+      </div>
+    } @empty {
+      <p class="text-gray-600">No reviews available for this movie yet.</p>
+    }
+  } @else {
+    <p class="text-gray-600">Loading reviews...</p>
+  }
+</section>

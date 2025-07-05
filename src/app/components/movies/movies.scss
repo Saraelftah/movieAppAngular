@@ -1,0 +1,20 @@
+ @use '../../../styles/variables' as *;
+ 
+ ::ng-deep  .p-carousel-item-list {
+    gap: 20px;
+}
+
+::ng-deep .p-carousel-indicator-active .p-carousel-indicator-button {
+    --p-carousel-indicator-active-background: #FFE353;
+   
+}
+
+::ng-deep  .p-carousel-content-container{
+    margin-bottom: 20px;
+}
+
+.movie-date{
+    color:$text-color-light;
+}
+
+	

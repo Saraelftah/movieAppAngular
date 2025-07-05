@@ -1,0 +1,16 @@
+ @use '../../../styles/variables' as *;
+ 
+.review-card {
+    max-height: 300px;
+    overflow: auto;
+    background-color: #F3F1F1;
+    box-shadow: 0 0 2px 2px #ACACAC;
+
+    .author {
+        color: $text-color;
+    }
+    .myRating{
+        --p-rating-icon-active-color: gold;
+        margin-left: 5px;
+    }
+}

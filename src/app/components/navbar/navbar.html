@@ -1,0 +1,46 @@
+<nav class="nav-bar">
+
+    <div class="container">
+
+        <div class="card">
+            <p-menubar [model]="items">
+                <ng-template #start>
+                    <div class="navbar-start">
+                        <a class="img-container" href="#">
+                            <img src="assets/movie.png" alt="Logo" />
+                        </a>
+                        <span class="app-title">MovieApp</span>
+                    </div>
+                </ng-template>
+
+                <ng-template #item let-item let-root="root">
+                    <a [routerLink]="item.routerLink" pRipple class="flex items-center p-menubar-item-link">
+                        <span>{{ item.label }}</span>
+                    </a>
+                </ng-template>
+
+                <ng-template #end>
+                    <div class="d-flex justify-center align-center gap">
+
+                        <div>
+                            <p-select [options]="languages" [(ngModel)]="selectedLanguage"
+                                (onChange)="onLanguageChange()" optionLabel="name" placeholder="Select a Language"
+                                class="w-full md:w-25 lang-select" />
+                        </div>
+
+                        <div class="favicon d-flex align-center justify-center gap-sm">
+                            <a routerLink="/watchlist" class="relative">
+                                <i class="pi pi-heart-fill" style="font-size: 2rem; color: var(--primary-color)"></i>
+                                <span class="wishlist-badge">{{ watchlistCount() }}</span>
+                                <span>Watchlist</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </ng-template>
+            </p-menubar>
+        </div>
+    </div>
+
+</nav>

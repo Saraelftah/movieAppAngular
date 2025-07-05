@@ -1,0 +1,15 @@
+<section class="search !mb-8 rounded-lg">
+
+    <h1 class="!mb-4 font-bold text-3xl">Welcome to our movie app</h1>
+    <p class="!mb-4">Millions of movies, TV shows and people to discover. Explore now.</p>
+
+    <div class="search-container flex gap-2 !p-4 justify-content-center">
+
+      <input type="text" pInputText [(ngModel)]="searchQuery" (input)="onInputChange()" placeholder="Search movies..."
+        class="p-inputtext-lg flex-grow-1 max-w-sm rounded-lg" />
+
+      <p-button label="Search" icon="pi pi-search" (onClick)="onSearch()" [rounded]="true" class="searchbtn"></p-button>
+    </div>
+
+  
+</section>

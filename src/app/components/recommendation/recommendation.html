@@ -1,0 +1,61 @@
+<section class="recommendation">
+
+    <h2 class="font-bold text-3xl !mb-4">Recommendation</h2>
+
+    <p-carousel [value]="recommendations()" [numVisible]="3" [numScroll]="3" [circular]="true"
+        [responsiveOptions]="responsiveOptions" autoplayInterval="3000">
+
+        <ng-template let-movie #item>
+            <div class="shadow-lg rounded-lg m-2 p-4">
+
+                <div class=" relative ">
+                    <!-- image -->
+                    <div class="mb-4">
+                        <div class="relative mx-auto rounded-tl-lg rounded-tr-lg">
+                            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="poster"
+                                class="w-full rounded-tl-lg rounded-tr-lg " />
+
+
+                        </div>
+                    </div>
+                    <!-- image -->
+
+
+                    <!-- rating -->
+                    <div class="absolute left-3 top-[90%]">
+                        <div class="w-12 h-12 rounded-full relative flex items-center justify-center"
+                            [ngStyle]="{ background: getRatingGradient(movie.vote_average) }">
+                            <div
+                                class="w-10 h-10 bg-white rounded-full flex flex-col items-center justify-center text-center text-gray-800 shadow">
+                                <div class="text-l font-bold">{{ movie.vote_average * 10 | number:'1.0-0' }}%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- rating -->
+                </div>
+
+
+                <!-- content -->
+                <div class="flex justify-between items-center padding rounded-bl-lg rounded-br-lg">
+
+                    <div class="!mt-4">
+                    
+                            <div class="!mb-2 font-semibold text-sm">{{ movie.title || movie.name }}</div>
+                    
+
+                        <div class="text-sm movie-date">{{ movie.release_date || movie.first_air_date }}</div>
+                    </div>
+
+                    <span>
+                        <p-button icon="pi pi-heart" severity="secondary" [outlined]="true" />
+                    </span>
+
+                </div>
+                <!-- content -->
+
+            </div>
+        </ng-template>
+    </p-carousel>
+
+
+</section>
