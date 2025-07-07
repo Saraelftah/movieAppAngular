@@ -21,9 +21,8 @@ import { MoviereviwService } from '../../service/moviereviw-service';
 })
 export class MovieDetails {
 
-  movie!: Signal<Movie| undefined>;
   id!: number | undefined;
-  genres!: Signal<string[]>;
+  fullMovie!: Signal<Movie | null>;
   
 
   private route= inject (ActivatedRoute);
@@ -31,58 +30,17 @@ export class MovieDetails {
   private recommService= inject (RecommService);
   private movieReviwService= inject (MoviereviwService);
 
-
-  constructor() {
-    this.movieService.loadAllSections();
-    this.movieService.fetchGenres();
-
-
-    this.movie = computed(() => this.movieService.findMovieById(this.id!));
-
-    this.genres = computed(() => {
-    const movie = this.movie();
-    const allGenres = this.movieService.genre();
-    if (!movie || !movie.genre_ids || allGenres.length === 0) return [];
-
-    return movie.genre_ids.map(id => {
-      const match = allGenres.find(g => g.id === id);
-      return match ? match.name : 'Unknown';
-    });
-  });
-
-    effect(() => {
-       const currentMovie = this.movie(); 
-
-       // Only fetch if movie and its ID are available
-      if (currentMovie && currentMovie.id) { 
-        this.recommService.fetchRecomm<Movie>(currentMovie.id, 'movie');
-        this.movieReviwService.fetchReviw(currentMovie.id);
-        console.log('Fetching recommendations for movie ID:', currentMovie.id);
-      } else {
-        console.log('Movie not yet found or ID not available, not fetching recommendations.');
-      }
-    });
-  }
-
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
+
+     if (this.id) {
+        this.movieService.getMovieDetails(this.id);
+        this.recommService.fetchRecomm<Movie>(this.id, 'movie');
+        this.movieReviwService.fetchReviw(this.id);
+      }
+
+      this.fullMovie = this.movieService.fullMovie;
 
   }
   
 }
-
-
-
- // this.movie = computed(() => {
-    //   const currentId = Number(this.route.snapshot.paramMap.get('id'));
-
-    //    const allMovies = [
-    //   ...this.movieService.nowPlaying(),
-    //   ...this.movieService.popular(),
-    //   ...this.movieService.topRated(),
-    //   ...this.movieService.upcoming()
-    // ];
-
-    // return allMovies.find(m => m.id === currentId);
-
-    // });

@@ -88,27 +88,3 @@ export class TvshowsService {
     });
   }
 }
-
-// private baseUrl = `https://api.themoviedb.org/3/tv/`;
-
-// fetchSeries(): void{
-//   this.fetchSection('airing_today', this._airingToday);
-//   this.fetchSection('top_rated', this._onTheAir);
-//    this.fetchSection('on_the_air', this._popular);
-//   this.fetchSection('popular', this._topRated);
-// }
-
-// private fetchSection(sectionName: string, target: WritableSignal<Tvshow[]>): void {
-
-//   this.http.get<{ results: Tvshow[] }>(`${this.baseUrl}${sectionName}`, {
-//     headers: {
-//       Authorization: `Bearer ${this.apiKey}`,
-//       accept: 'application/json'
-//     }
-//   })
-//   .subscribe(data => {
-//     target.set(data.results);
-//     console.log(target);
-//   });
-
-// }

@@ -2,18 +2,16 @@ import { Component, Signal, OnInit, inject, effect, computed } from '@angular/co
 import { CarouselModule } from 'primeng/carousel';
 import { Carousel } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
-import { Tag } from 'primeng/tag';
 import { CommonModule } from '@angular/common';
 import { MovieService } from '../../service/movie-service'
 import { Movie } from '../../interfaces/movie';
-import { PercentagePipe } from '../../pipes/percentage-pipe'
 import { RouterModule } from '@angular/router';
 import { Search } from '../search/search';
 import { WatchlistService } from '../../service/watchlist-service';
 
 @Component({
   selector: 'app-movies',
-  imports: [CarouselModule, Carousel, ButtonModule, Tag, PercentagePipe, CommonModule, RouterModule, Search],
+  imports: [CarouselModule, Carousel, ButtonModule, CommonModule, RouterModule, Search],
   templateUrl: './movies.html',
   styleUrl: './movies.scss',
   providers: [MovieService]

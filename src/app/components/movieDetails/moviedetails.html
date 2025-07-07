@@ -2,42 +2,87 @@
     <div class="container">
 
         <div class="flex flex-col lg:flex-row justify-between gap-4">
-            @if (movie()) {
-
-            <div class="img-container rounded-lg">
-                <img [src]="'https://image.tmdb.org/t/p/w500' + movie()!.poster_path" [alt]="movie()!.title"
-                    class="rounded-3xl">
-            </div>
-
-            <div class="movie-details w-full lg:w-3/5 mt-4 lg:mt-0">
-
-                <h2 class="!mb-4 text-3xl font-bold">{{ movie()!.title }}</h2>
-                <p class="!mb-4 rel-date">{{ movie()!.release_date}} <i class="pi pi-calendar" style="font-size: 1rem"></i></p>
-
-                <!-- Display rating stars -->
-                <div class="flex align-items-center gap-2 myRating">
-                    <p-rating [ngModel]="movie()!.vote_average / 2" [readonly]="true" [stars]="5"></p-rating>
-                     <!-- Display original score -->
-                    <span>({{ movie()!.vote_average | number:'1.1-1' }}/10)</span>
+            @if (fullMovie()) {
+                   
+                <!-- movie image -->
+                <div class="img-container rounded-lg">
+                    <img [src]="'https://image.tmdb.org/t/p/w500' + fullMovie()!.poster_path" [alt]="fullMovie()!.title"
+                        class="rounded-3xl">
                 </div>
 
+                <!-- details -->
+                <div class="movie-details w-full lg:w-3/5 mt-4 lg:mt-0">
 
-                <p class="!my-4">{{ movie()!.overview }}</p>
-                
-                <div class="genres-container flex flex-wrap gap-2">
-                    @for (genreName of genres(); track genreName) {
-                        <p-tag [value]="genreName"  class="!mt-4 !rounded-full genre" ></p-tag>
-                    } @empty {
+                    <!-- title -->
+                    <h2 class="!mb-4 text-3xl font-bold">{{ fullMovie()!.title }}</h2>
+
+                    <p class="italic text-gray-600 !mb-3" *ngIf="fullMovie()!.tagline">
+                        "{{ fullMovie()!.tagline }}"
+                    </p>
+
+                    <!-- release date -->
+                    <p class="!mb-4 rel-date">
+                        {{ fullMovie()!.release_date}}
+                         <i class="pi pi-calendar"style="font-size: 1rem"></i>
+                    </p>
+
+                    <!-- run time  -->
+                    <p class="!mb-4 rel-date"> 
+                        <i class="pi pi-clock mr-1"></i> 
+                        {{ fullMovie()!.runtime }} min
+                    </p>
+
+                    <!-- Display rating stars -->
+                    <div class="flex align-items-center gap-2 myRating">
+                        <p-rating [ngModel]="fullMovie()!.vote_average / 2" [readonly]="true" [stars]="5"></p-rating>
+                        <!-- Display original score -->
+                        <span>({{ fullMovie()!.vote_average | number:'1.1-1' }}/10)</span>
+                    </div>
+
+                    <!-- language -->
+                    <p class="!my-4">Language: {{ fullMovie()!.original_language }}</p>
+
+                    <!-- overview -->
+                    <p class="!my-4">{{ fullMovie()!.overview }}</p>
+
+
+                    <div class="genres-container flex flex-wrap gap-2  !mb-8">
+                        @for (genre of fullMovie()!.genres; track genre.id) {
+                        <p-tag [value]="genre.name" class="!mt-4 !rounded-full genre"></p-tag>
+                        } @empty {
                         <p>No genres available.</p>
-                    }
+                        }
+                    </div>
+
+                    <!-- status revenue budget -->
+                    <div class="flex flex-wrap gap-2 text-sm !mb-4">
+                        <span class="bg-gray-200 !px-3 !py-1 rounded-full text-gray-700">
+                            Status: {{ fullMovie()!.status }}
+                        </span>
+                       
+                        <span class="bg-gray-200 !px-3 !py-1 rounded-full text-gray-700">
+                            Revenue: ${{ fullMovie()!.revenue | number }}
+                        </span>
+
+                        <span class="bg-gray-200 !px-3 !py-1 rounded-full text-gray-700">
+                            Budget: ${{ fullMovie()!.budget | number }}
+                        </span>
+                    </div>
+
+                    <!-- website -->
+                    <div class="!mt-4">
+                        <a *ngIf="fullMovie()!.homepage" [href]="fullMovie()!.homepage" target="_blank"
+                            class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white !px-4 !py-2 rounded-lg transition">
+                            Visit Official Site <i class="pi pi-link" style="font-size: 1rem"></i>
+                        </a>
+                    </div>
                 </div>
 
-            </div>
 
-            }@else {
-            <p>Loading movie details or movie not found...</p>
-            }
-        </div>
+                }@else {
+                <p>Loading movie details or movie not found...</p>
+                }
+            </div>
 
         <app-recommendation></app-recommendation>
         <app-movie-reviw></app-movie-reviw>

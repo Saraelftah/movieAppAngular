@@ -1,19 +1,8 @@
-.search-results-container {
-  // Add some padding or max-width for content
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.grid {
-  display: grid;
-  // Tailwind's grid classes handle responsiveness, but if not using Tailwind,
-  // you'd define grid-template-columns and media queries here.
-}
 
 .p-card-shadow {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   border-radius: 0.5rem;
-  overflow: hidden; // Ensure rounded corners apply to image
+  overflow: hidden;
 }
 
 .p-card .p-card-header img {
@@ -21,14 +10,12 @@
   border-top-right-radius: 0.5rem;
 }
 
-// Ensure the image covers the card header area
 .p-card .p-card-header {
-  padding: 0; // Remove default padding if any
+  padding: 0;
 }
 
 .line-clamp-3 {
   display: -webkit-box;
-//   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

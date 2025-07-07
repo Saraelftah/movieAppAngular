@@ -2,19 +2,17 @@ import { Component, Signal, inject, effect, computed } from '@angular/core';
 import { CarouselModule } from 'primeng/carousel';
 import { Carousel } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
-import { Tag } from 'primeng/tag';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Tvshow } from '../../interfaces/tvshow';
 import { TvshowsService } from '../../service/tvshows-service';
-import { PercentagePipe } from '../../pipes/percentage-pipe'
 import { Search } from '../search/search';
 import { WatchlistService } from '../../service/watchlist-service';
 
 
 @Component({
   selector: 'app-tvshows',
-  imports: [CarouselModule, Carousel, ButtonModule, Tag, PercentagePipe, CommonModule, RouterModule, Search],
+  imports: [CarouselModule, Carousel, ButtonModule, CommonModule, RouterModule, Search],
   templateUrl: './tvshows.html',
   styleUrl: './tvshows.scss'
 })
